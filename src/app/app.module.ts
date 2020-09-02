@@ -4,13 +4,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+//天地图模块
+import { SkyMapModule } from "../app/sky-map/sky-map.module"
+//chart-map模块
+import { ChartsMapModule } from "../app/charts-map/charts-map.module";
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    SkyMapModule,
+    ChartsMapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

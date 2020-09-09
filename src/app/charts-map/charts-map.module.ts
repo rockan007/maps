@@ -8,20 +8,23 @@ import { StyleSelectorComponent } from './style-selector/style-selector.componen
 import { MapShowerComponent } from './map-shower/map-shower.component';
 import { ChartsMapComponent } from './charts-map/charts-map.component';
 
-import {AreaSelectorService} from "./services/area-selector.service";
-import {ChartsMapService} from "./services/charts-map.service";
-import {MapStyleSelectorService} from "./services/map-style-selector.service";
+import { AreaSelectorService } from "./services/area-selector.service";
+import { ChartsMapService } from "./services/charts-map.service";
+import { MapStyleSelectorService } from "./services/map-style-selector.service";
+import {
+  ChartsMapRoutingModule
+} from "./charts-map-routing.module";
 @NgModule({
   declarations: [AreaSelectorComponent, StyleSelectorComponent, MapShowerComponent, ChartsMapComponent],
-  exports:[ChartsMapComponent],
   imports: [
     CommonModule,
+    ChartsMapRoutingModule,
     HttpClientModule,
     FormsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     }),
   ],
-  providers:[AreaSelectorService,ChartsMapService,MapStyleSelectorService]
+  providers: [AreaSelectorService, ChartsMapService, MapStyleSelectorService]
 })
 export class ChartsMapModule { }

@@ -4,10 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//天地图模块
-import { SkyMapModule } from "../app/sky-map/sky-map.module"
-//chart-map模块
-import { ChartsMapModule } from "../app/charts-map/charts-map.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SystemNavigationComponent } from './system-navigation/system-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -16,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -32,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

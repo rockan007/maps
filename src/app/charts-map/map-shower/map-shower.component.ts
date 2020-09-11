@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChartsMapService } from '../services/charts-map.service'
 import { EChartOption } from 'echarts';
 import { AreaSelectorService } from '../services/area-selector.service';
-import { AreaInfo } from '../interfaces/area-info';
-import { MapStyle } from '../interfaces/map-style';
+import { AreaInfo } from '../../interfaces/area-info';
+import { MapStyle } from '../../interfaces/map-style';
 import { MapStyleSelectorService } from '../services/map-style-selector.service';
 import { MapType } from '@angular/compiler';
 import { Observable, from } from 'rxjs';

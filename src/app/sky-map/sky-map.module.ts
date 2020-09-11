@@ -7,11 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from "@angular/material/button";
-import {SkyMapRoutingModule} from './sky-map-routing.module';
-
+import { SkyMapRoutingModule } from './sky-map-routing.module';
+import { SkyMapService } from './sky-map.service';
+import { SkyMapDirective } from './sky-map.directive'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [MapSelectorComponent, MapShowerComponent, SkyMapComponent],
+  declarations: [MapSelectorComponent, MapShowerComponent, SkyMapComponent, SkyMapDirective],
   imports: [
     CommonModule,
     SkyMapRoutingModule,
@@ -19,7 +21,11 @@ import {SkyMapRoutingModule} from './sky-map-routing.module';
     ReactiveFormsModule,
     MatInputModule,
     MatRadioModule,
-    MatButtonModule,
-  ]
+    MatButtonModule, 
+    HttpClientModule
+
+  ],
+  providers: [SkyMapService],
+  exports: [SkyMapDirective]
 })
 export class SkyMapModule { }

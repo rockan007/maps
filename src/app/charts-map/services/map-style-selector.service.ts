@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
-import { MapStyle } from '../interfaces/map-style';
+import { MapStyle } from '../../interfaces/map-style';
 
 @Injectable()
 export class MapStyleSelectorService {

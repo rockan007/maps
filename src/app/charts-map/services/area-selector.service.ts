@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AreaInfo } from '../interfaces/area-info'
+import { AreaInfo } from '../../interfaces/area-info'
 
 import { HttpClient } from "@angular/common/http";
-import { AreaInfoResponse } from '../interfaces/area-info-response'
+import { AreaInfoResponse } from '../../interfaces/area-info-response'
 import { Observable, Subject } from 'rxjs';
 @Injectable()
 export class AreaSelectorService {

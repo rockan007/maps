@@ -2,23 +2,23 @@
     <div class="input-container">
         <div>
             <mat-radio-group [formControl]="inputTypeControl">
-                <mat-radio-button class="radio-item" value="words">关键字</mat-radio-button>
-                <mat-radio-button class="radio-item" value="lnglat">坐标</mat-radio-button>
+                <mat-radio-button class="radio-item" [value]="keywordsType.Text">关键字</mat-radio-button>
+                <mat-radio-button class="radio-item" [value]="keywordsType.LngLat">坐标</mat-radio-button>
             </mat-radio-group>
         </div>
         <div  class="keywords-input-container">
             <mat-form-field appearance="outline">
                 <mat-label>请输入</mat-label>
-                <input matInput placeholder="请输入{{inputTypeControl.value=='words'?'关键字':'坐标'}}进行搜索" required>
+                <input [formControl]="inputValueControl"  matInput placeholder="请输入{{inputTypeControl.value==keywordsType.Text?'关键字':'坐标'}}进行搜索" required>
             </mat-form-field>
-            <button mat-raised-button color="primary">搜索</button>
+            <button mat-raised-button color="primary" (click)="searchListener()">搜索</button>
         </div>
     </div>
     <div class="result-container">
         <mat-form-field appearance="outline">
             <mat-label>结果</mat-label>
-            <input matInput placeholder="">
+            <input matInput class="result-input" [value]="pickedCoordinate? pickedCoordinate.lng+','+pickedCoordinate.lat:''" placeholder="">
         </mat-form-field>
-        <button mat-raised-button color="primary">复制</button>
+        <button mat-raised-button color="primary" (click)="copyCoordinate()">复制</button>
     </div>
 </div>

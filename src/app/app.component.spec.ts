@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'tool-map'`, () => {
+  it(`should have as title 'tools'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('tool-map');
+    expect(app.title).toEqual('tools');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('tool-map app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('tools app is running!');
   });
 });

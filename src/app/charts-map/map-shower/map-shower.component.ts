@@ -4,17 +4,18 @@ import { EChartOption } from 'echarts';
 import { AreaSelectorService } from '../services/area-selector.service';
 import { AreaInfo } from '../../interfaces/area-info';
 import { MapStyle } from '../../interfaces/map-style';
-import { MapStyleSelectorService } from '../services/map-style-selector.service';
-import { MapType } from '@angular/compiler';
-import { Observable, from } from 'rxjs';
+import { Observable, } from 'rxjs';
 import * as echarts from "echarts";
+import { DatGuiService } from "../dat-gui.service";
+import { debounceTime } from 'rxjs/operators';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-map-shower',
   templateUrl: './map-shower.component.html',
   styleUrls: ['./map-shower.component.less']
 })
-export class MapShowerComponent implements OnInit,OnDestroy {
+export class MapShowerComponent implements OnInit, OnDestroy {
 
   private jsonList: Array<any>;
   private mapStyle: MapStyle;
@@ -24,18 +25,32 @@ export class MapShowerComponent implements OnInit,OnDestroy {
 
   };
   echartsIntance: any;
+  mapConfig: any;
   constructor(private chartsMapService: ChartsMapService,
     private areaSelectorService: AreaSelectorService,
-    private mapStyleSelectorService: MapStyleSelectorService) {
+    private datGuiService: DatGuiService,
+    private _elementRef : ElementRef) {
 
   }
   ngOnDestroy(): void {
-    this.mapStyleSelectorService.newSubjectInstance().unsubscribe();
+    this.datGuiService.configSubjectNewInstance().unsubscribe();
     this.areaSelectorService.newSubjectInstance().unsubscribe();
   }
 
   ngOnInit(): void {
+    this.mapConfig = this.datGuiService.config;
+
     this.getMapJson();
+
+    this.datGuiService.initDatGui( this._elementRef.nativeElement.querySelector('.dat-gui-container'));
+
+    this.datGuiService.getConfigSubject().pipe(
+      debounceTime(3000),
+    ).subscribe((config) => {
+      console.log("config", config);
+      this.mapConfig = config;
+      this.showCharts(this.jsonList);
+    })
   }
   onChartInit(ec) {
     this.echartsIntance = ec;
@@ -48,12 +63,6 @@ export class MapShowerComponent implements OnInit,OnDestroy {
         this.showCharts(jsonList);
       });
     });
-    this.mapStyleSelectorService.newSubjectInstance().subscribe((mapStyle: MapType) => {
-      console.log("订阅变更");
-      this.mapStyle = mapStyle;
-      this.showCharts(this.jsonList);
-
-    })
   }
   showCharts(jsonList: any[]) {
     this.echartsIntance.clear();
@@ -100,26 +109,22 @@ export class MapShowerComponent implements OnInit,OnDestroy {
                 colorStops: [
                   {
                     offset: 0,
-                    color: "#002f6c", // 100% 处的颜色
+                    color: this.mapConfig.backcolor.start, // 100% 处的颜色
 
                   },
                   {
-                    offset: 0.5,
-                    color: "#01579b", // 0% 处的颜色
-                  },
-                  {
                     offset: 1,
-                    color: "#4fc3f7", // 0% 处的颜色
+                    color: this.mapConfig.backcolor.end, // 0% 处的颜色
                   },
                 ],
                 global: false, // 缺省为 false
                 globalCoord: false, // 缺省为 false
               },
-              borderColor: "rgba(255, 255, 255, 0.8)",
-              shadowBlur: 5,
-              shadowColor: "#0c0a3e",
-              shadowOffsetX: -15,
-              shadowOffsetY: 20,
+              borderColor: this.mapConfig.border.outer.color,
+              shadowBlur: this.mapConfig.shadow.blurRadius,
+              shadowColor: this.mapConfig.shadow.color,
+              shadowOffsetX: this.mapConfig.shadow.offsetX,
+              shadowOffsetY: this.mapConfig.shadow.offsetY,
             },
 
             emphasis: {
@@ -152,12 +157,9 @@ export class MapShowerComponent implements OnInit,OnDestroy {
             normal: {
               label: {
                 show: false,
-                position: "left",
-                fontSize: 14,
-                color: "gold",
               },
               areaColor: "rgba(0,0,0,0)",
-              borderColor: "rgba(255, 255, 255, 0.8)",
+              borderColor: this.mapConfig.border.inner.color,
             },
             emphasis: {
               areaColor: "rgb(44,80,208)",
@@ -168,31 +170,32 @@ export class MapShowerComponent implements OnInit,OnDestroy {
         },
       ],
       series: [
-        {
+        this.mapConfig.effectScatter.isShow ? {
           name: "涟漪散点",
           type: "effectScatter",
           coordinateSystem: "geo",
-          symbolSize: 10,
+          symbolSize: this.mapConfig.effectScatter.symbolSize,
           data: this.convertData(jsonList[1]),
           rippleEffect: {
-            color: "#ff8f00",
+            color: this.mapConfig.effectScatter.shadow.color
           },
           markPoint: {
-            size: 20,
+            size: this.mapConfig.effectScatter.size
           },
           label: {
             normal: {
-              show: false,
+              show: this.mapConfig.effectScatter.label.isShow,
               formatter: "{b}",
-              position: "right",
+              position: this.mapConfig.effectScatter.label.position,
+              color: this.mapConfig.effectScatter.label.color
             },
           },
           itemStyle: {
-            color: "#ff8f00",
-            shadowBlur: 10,
-            shadowColor: "#333",
+            color: this.mapConfig.effectScatter.color,
+            shadowBlur: this.mapConfig.effectScatter.blurRadius,
+            shadowColor: this.mapConfig.effectScatter.shadow.color,
           },
-        },
+        } : {},
       ],
     };
   }

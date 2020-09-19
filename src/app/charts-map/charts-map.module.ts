@@ -10,6 +10,7 @@ import { ChartsMapComponent } from './charts-map/charts-map.component';
 
 import { AreaSelectorService } from "./services/area-selector.service";
 import { ChartsMapService } from "./services/charts-map.service";
+import { DatGuiService } from "./dat-gui.service"
 import { MapStyleSelectorService } from "./services/map-style-selector.service";
 import {
   ChartsMapRoutingModule
@@ -25,6 +26,6 @@ import {
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     }),
   ],
-  providers: [AreaSelectorService, ChartsMapService, MapStyleSelectorService]
+  providers: [AreaSelectorService, ChartsMapService, MapStyleSelectorService, DatGuiService]
 })
 export class ChartsMapModule { }

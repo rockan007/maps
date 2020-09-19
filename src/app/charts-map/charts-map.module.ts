@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgxEchartsModule } from "ngx-echarts"
 import { AreaSelectorComponent } from './area-selector/area-selector.component';
-import { StyleSelectorComponent } from './style-selector/style-selector.component';
 import { MapShowerComponent } from './map-shower/map-shower.component';
 import { ChartsMapComponent } from './charts-map/charts-map.component';
 
@@ -16,7 +15,7 @@ import {
   ChartsMapRoutingModule
 } from "./charts-map-routing.module";
 @NgModule({
-  declarations: [AreaSelectorComponent, StyleSelectorComponent, MapShowerComponent, ChartsMapComponent],
+  declarations: [AreaSelectorComponent, MapShowerComponent, ChartsMapComponent],
   imports: [
     CommonModule,
     ChartsMapRoutingModule,

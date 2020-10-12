@@ -1,4 +1,4 @@
-<div class="area-selecotor-container">
+<div class="area-selecotor-container" *ngIf="selectAreaInfo">
     <input class="area-selector" placeholder="省、市、县或行政代码" [ngModel]="selectAreaInfo.name" (keyup)="onkey($event)"/>
     <ul class="hint-list" *ngIf="relationAreaInfoList.length>0 && (!isSelected)">
         <li *ngFor="let areaInfo of relationAreaInfoList" class="hint-item cursor-pointer" (click)="onclick(areaInfo)">

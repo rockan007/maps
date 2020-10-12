@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { KeywordsType } from '../enums/keywords-type.enum';
 import { KeywordsInfo } from '../../interfaces/keywords-info';
 import { SkyMapService } from '../sky-map.service';
-import { MatTooltip } from '@angular/material/tooltip'
+import { MatTooltip } from '@angular/material/tooltip';
 import MapPointer from 'src/app/interfaces/map-pointer';
 declare let T: any;
 @Component({

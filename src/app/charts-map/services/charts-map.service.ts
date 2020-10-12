@@ -12,7 +12,7 @@ export class ChartsMapService {
     const hasDetailJSON = this.isHaveDetailJson(areaInfo);
     let reqArr = [];
     if (hasDetailJSON) {
-      reqArr = [ this.requestMapBoundJson(areaInfo), this.requestMapFullJson(areaInfo),];
+      reqArr = [ this.requestMapBoundJson(areaInfo), this.requestMapFullJson(areaInfo)];
     } else {
       reqArr = [this.requestMapBoundJson(areaInfo)];
     }

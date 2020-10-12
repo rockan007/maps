@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChartsMapService } from '../services/charts-map.service'
+import { ChartsMapService } from '../services/charts-map.service';
 import { EChartOption } from 'echarts';
 import { AreaSelectorService } from '../services/area-selector.service';
 import { AreaInfo } from '../../interfaces/area-info';

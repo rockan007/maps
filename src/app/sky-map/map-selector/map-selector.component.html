@@ -19,6 +19,6 @@
             <mat-label>结果</mat-label>
             <input matInput class="result-input" [value]="pickedCoordinate? pickedCoordinate.lng+','+pickedCoordinate.lat:''" placeholder="">
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="copyCoordinate()">复制</button>
+        <button mat-raised-button color="primary"  matTooltipPosition="after" #tooltip="matTooltip" [matTooltip]="msg" (click)="copyCoordinate()">复制</button>
     </div>
 </div>

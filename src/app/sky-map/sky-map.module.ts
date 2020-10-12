@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { MapSelectorComponent } from './map-selector/map-selector.component';
 import { MapShowerComponent } from './map-shower/map-shower.component';
 import { SkyMapComponent } from './sky-map/sky-map.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatButtonModule } from "@angular/material/button";
+import { MatButtonModule } from '@angular/material/button';
 import { SkyMapRoutingModule } from './sky-map-routing.module';
 import { SkyMapService } from './sky-map.service';
-import { SkyMapDirective } from './sky-map.directive'
+import { SkyMapDirective } from './sky-map.directive';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,9 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatInputModule,
     MatRadioModule,
-    MatButtonModule, 
-    HttpClientModule
-
+    MatButtonModule,
+    HttpClientModule,
+    MatTooltipModule
   ],
   providers: [SkyMapService],
   exports: [SkyMapDirective]

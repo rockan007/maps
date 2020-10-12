@@ -7,24 +7,25 @@ export function allowInputValidator(type: KeywordsType): ValidatorFn {
         allow = control.value.trim().length > 0;
         break;
       case KeywordsType.LngLat:
-        allow = isLnglatInput(control.value.trim())
+        allow = isLnglatInput(control.value.trim());
+        break;
       default:
         break;
     }
-    return allow ? null : { 'forbiddenName': { value: control.value } };
+    return allow ? null : { forbiddenName: { value: control.value } };
   };
 }
-function isLnglatInput(str: string) {
-  if (str.length == 0) {
+function isLnglatInput(str: string): boolean {
+  if (str.length === 0) {
     return false;
   }
-  const lnglatArr = str.split(",");
-  if (lnglatArr.length != 2) {
+  const lnglatArr = str.split(',');
+  if (lnglatArr.length !== 2) {
     return false;
   }
   return lnglatArr.every((lnglat) => {
     return !isNaN(parseFloat(lnglat));
-  })
+  });
 }
 import { Directive, Input } from '@angular/core';
 import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationErrors } from '@angular/forms';
@@ -45,7 +46,7 @@ export class SkyMapDirective implements Validator {
       : null;
   }
   registerOnValidatorChange?(fn: () => void): void {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
 }

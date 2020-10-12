@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-sky-map',
   templateUrl: './sky-map.component.html',
   styleUrls: ['./sky-map.component.less'],
-  host: {
-    'class': 'router-flex'
-  }
+
+
 })
 export class SkyMapComponent implements OnInit {
-
+  @HostBinding('class.router-flex') isFlex = true;
   constructor() { }
 
   ngOnInit(): void {

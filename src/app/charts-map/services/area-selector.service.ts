@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AreaInfo } from '../../interfaces/area-info'
+import { AreaInfo } from '../../interfaces/area-info';
 
-import { HttpClient } from "@angular/common/http";
-import { AreaInfoResponse } from '../../interfaces/area-info-response'
+import { HttpClient } from '@angular/common/http';
+import { AreaInfoResponse } from '../../interfaces/area-info-response';
 import { Observable, Subject } from 'rxjs';
 @Injectable()
 export class AreaSelectorService {
   private selectAreaInfoSubject: Subject<AreaInfo> = null;
-  areaList: Array<AreaInfo>
-  private areaRequUrl = "https://restapi.amap.com/v3/config/district?key=187fbc40fe82283aad8012fa25bcda8a&keywords=中国&subdistrict=3&extensions=base";
+  areaList: Array<AreaInfo>;
+  private areaRequUrl = `https://restapi.amap.com/v3/config/district
+  ?key=187fbc40fe82283aad8012fa25bcda8a&keywords=中国&subdistrict=3&extensions=base`;
   constructor(private http: HttpClient) {
   }
 

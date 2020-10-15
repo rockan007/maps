@@ -8,8 +8,7 @@ import { Observable, Subject } from 'rxjs';
 export class AreaSelectorService {
   private selectAreaInfoSubject: Subject<AreaInfo> = null;
   areaList: Array<AreaInfo>;
-  private areaRequUrl = `https://restapi.amap.com/v3/config/district
-  ?key=187fbc40fe82283aad8012fa25bcda8a&keywords=中国&subdistrict=3&extensions=base`;
+  private areaRequUrl = `https://restapi.amap.com/v3/config/district?key=187fbc40fe82283aad8012fa25bcda8a&keywords=中国&subdistrict=3&extensions=base`;
   constructor(private http: HttpClient) {
   }
 
